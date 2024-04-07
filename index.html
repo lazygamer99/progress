@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Year Progress Tracker</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    #progressBar {
+        width: 80%;
+        margin: 50px auto;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    #progressBar div {
+        height: 30px;
+        line-height: 30px;
+        background-color: #4CAF50;
+        color: white;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+<h1>Year Progress Tracker</h1>
+<div id="progressBar">
+  <div id="progress"></div>
+</div>
+<script>
+    function calculateProgress() {
+        var now = new Date();
+        var startOfYear = new Date(now.getFullYear(), 0, 0);
+        var currentDay = Math.floor((now - startOfYear) / (1000 * 60 * 60 * 24));
+        var totalDays = Math.floor((new Date(now.getFullYear() + 1, 0, 0) - startOfYear) / (1000 * 60 * 60 * 24));
+        var progressPercentage = (currentDay / totalDays) * 100;
+        return progressPercentage.toFixed(2);
+    }
+
+    window.onload = function() {
+        var progressBar = document.getElementById('progress');
+        var progress = calculateProgress();
+        progressBar.style.width = progress + '%';
+        progressBar.innerHTML = progress + '%';
+    };
+</script>
+</body>
+</html>
+
